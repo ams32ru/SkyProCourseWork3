@@ -2,6 +2,7 @@ package com.example.skyprocoursework3.controller;
 
 
 import com.example.skyprocoursework3.essense.Question;
+import com.example.skyprocoursework3.service.JavaQuestionService;
 import com.example.skyprocoursework3.service.QuestionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +14,9 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/exam/java")
 public class JavaQuestionController {
-    private final   QuestionService service;
+    private final JavaQuestionService service;
 
-    public JavaQuestionController(QuestionService service) {
+    public JavaQuestionController(JavaQuestionService service) {
         this.service = service;
     }
     @GetMapping("/add")

@@ -3,9 +3,11 @@ package com.example.skyprocoursework3.service;
 import com.example.skyprocoursework3.essense.Question;
 import com.example.skyprocoursework3.exception.QuestionAlreadyExistException;
 import com.example.skyprocoursework3.exception.QuestionNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class JavaQuestionService implements QuestionService {
     private final Set<Question> questions;
     private final Random random;
@@ -25,15 +27,14 @@ public class JavaQuestionService implements QuestionService {
         if (!questions.add(question)) {
             throw new QuestionAlreadyExistException();
         }
-        ;
         return question;
     }
+
     @Override
     public Question remove(Question question) {
         if (!questions.remove(question)) {
             throw new QuestionNotFoundException();
         }
-        ;
         return question;
     }
 
@@ -41,8 +42,12 @@ public class JavaQuestionService implements QuestionService {
     public Collection<Question> getAll() {
         return new HashSet<>(questions);
     }
+
     @Override
     public Question getRandomQuestion() {
-        return new ArrayList<>(questions).get(random.nextInt(questions.size()));
+        return questions.stream().skip(random
+                        .nextInt(0, questions.size()))
+                .findFirst().orElseThrow();
+
     }
 }

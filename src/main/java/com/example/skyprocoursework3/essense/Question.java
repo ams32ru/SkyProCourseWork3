@@ -1,6 +1,7 @@
 package com.example.skyprocoursework3.essense;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Question {
     private final String question;

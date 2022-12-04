@@ -2,11 +2,12 @@ package com.example.skyprocoursework3.service;
 
 import com.example.skyprocoursework3.essense.Question;
 import com.example.skyprocoursework3.exception.IncorrectAmountOfQuestionsException;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
 public class ExaminerServiceImpl implements ExaminerService {
         private final QuestionService questionService;
 
