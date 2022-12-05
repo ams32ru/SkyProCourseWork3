@@ -1,6 +1,7 @@
 package com.example.skyprocoursework3.service;
 
 import com.example.skyprocoursework3.essense.Question;
+import com.example.skyprocoursework3.exception.IncorrectAmountOfQuestionsException;
 import com.example.skyprocoursework3.exception.QuestionAlreadyExistException;
 import com.example.skyprocoursework3.exception.QuestionNotFoundException;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,9 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
+        if (questions.isEmpty()) {
+            throw new IncorrectAmountOfQuestionsException();
+        }
         return questions.stream().skip(random
                         .nextInt(0, questions.size()))
                 .findFirst().orElseThrow();

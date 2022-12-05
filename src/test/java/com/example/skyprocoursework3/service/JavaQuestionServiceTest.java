@@ -1,17 +1,13 @@
 package com.example.skyprocoursework3.service;
 
 import com.example.skyprocoursework3.essense.Question;
-import org.junit.jupiter.api.Assertions;
+import com.example.skyprocoursework3.exception.IncorrectAmountOfQuestionsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class JavaQuestionServiceTest {
 
@@ -59,6 +55,13 @@ class JavaQuestionServiceTest {
     void getRandomQuestion() {
         Question actual = questionService.getRandomQuestion();
         assertThat(actual).isIn(questions);
+    }
+
+    @Test
+    void QuestionNotFoundException() {
+        questionService = new JavaQuestionService();
+        assertThatThrownBy(() -> questionService.getRandomQuestion())
+                .isInstanceOf(IncorrectAmountOfQuestionsException.class);
     }
 
 }
